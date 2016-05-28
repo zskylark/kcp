@@ -37,7 +37,7 @@ const IUINT32 IKCP_MTU_DEF = 1400;
 const IUINT32 IKCP_ACK_FAST	= 3;
 const IUINT32 IKCP_INTERVAL	= 100;
 const IUINT32 IKCP_OVERHEAD = 24;
-const IUINT32 IKCP_DEADLINK = 10;
+const IUINT32 IKCP_DEADLINK = 20;
 const IUINT32 IKCP_THRESH_INIT = 2;
 const IUINT32 IKCP_THRESH_MIN = 2;
 const IUINT32 IKCP_PROBE_INIT = 7000;		// 7 secs to probe window size
@@ -689,7 +689,7 @@ int ikcp_input(ikcpcb *kcp, const char *data, long size)
 		ikcp_log(kcp, IKCP_LOG_INPUT, "[RI] %d bytes", size);
 	}
 
-	if (data == NULL || size < 24) return 0;
+	if (data == NULL || size < 24) return -1;
 
 	while (1) {
 		IUINT32 ts, sn, len, una, conv;

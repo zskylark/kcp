@@ -128,17 +128,20 @@ TCP是为流量设计的（每秒内可以传输多少KB的数据），讲究的
 # 相关应用
 
 - [dog-tunnel](https://github.com/vzex/dog-tunnel): GO开发的网络隧道，使用 KCP极大的改进了传输速度，并移植了一份 GO版本 KCP
-- [lua-kcp](https://github.com/linxiaolong/lua-kcp)：KCP的 Lua扩展，用于 Lua服务器
+- [lua-kcp](https://github.com/linxiaolong/lua-kcp): KCP的 Lua扩展，用于 Lua服务器
 - [asio-kcp](https://github.com/libinzhangyuan/asio_kcp): 使用 KCP的完整 UDP网络库，完整实现了基于 UDP的链接状态管理，会话控制，KCP协议调度等
+- [kcp-go](https://github.com/xtaci/kcp-go): 高安全性的kcp的 GO语言实现，包含 UDP会话管理的简单实现，可以作为后续开发的基础库。 
+- [kcp-csharp](https://github.com/limpo1989/kcp-csharp): kcp的csharp移植，同时包含一份回话管理，可以连接上面kcp-go的服务端。
+- [kcptun](https://github.com/xtaci/kcptun): 基于 kcp-go做的高速远程端口转发(隧道) ，配合ssh -D，可以比 shadowsocks 更流畅的看在线视频。
+- [kcpuv](https://github.com/elisaday/kcpuv): 使用 libuv开发的kcpuv库，目前还在 Demo阶段。
 
 # 协议比较
 
-如果永远不丢包那么 KCP和 TCP性能差不多，但网络会卡，造成卡的原因就是丢包和抖动。在内网里直接比较，大家都差不多，但是放到公网上，放到3G/4G网络情况下，或者使用内网丢包模拟，差距就很明显了。公网在高峰期有平均接近10%的丢包，wifi/3g/4g下更糟糕，这正是造成各种网络卡顿的元凶。
+如果网络永远不卡，那 KCP/TCP 表现类似，但是网络本身就是不可靠的，丢包和抖动无法避免（否则还要各种可靠协议干嘛）。在内网这种几乎理想的环境里直接比较，大家都差不多，但是放到公网上，放到3G/4G网络情况下，或者使用内网丢包模拟，差距就很明显了。公网在高峰期有平均接近10%的丢包，wifi/3g/4g下更糟糕，这些都会让传输变卡。
 
 感谢 [asio-kcp](https://github.com/libinzhangyuan/asio_kcp) 的作者 [zhangyuan](https://github.com/libinzhangyuan) 对 KCP 与 enet, udt做过的一次横向评测，结论如下：
 
 - ASIO-KCP **has good performace in wifi and phone network(3G, 4G)**.
-- Extra using 20% ~ 50% network flow for speed improvement.
 - The kcp is the **first choice for realtime pvp game**.
 - The lag is less than 1 second when network lag happen. **3 times better than enet** when lag happen.
 - The enet is a good choice if your game allow 2 second lag.
@@ -158,12 +161,11 @@ TCP是为流量设计的（每秒内可以传输多少KB的数据），讲究的
 
 欢迎使用支付宝手扫描上面的二维码，对该项目进行捐赠。捐赠款项将用于持续优化 KCP协议以及完善文档。
 
-感谢：明明、星仔、进、帆、颁钊、斌铨、晓丹、余争、虎、晟敢、徐玮、王川、赵刚强、胡知锋、万新朝、何新超、刘旸、侯宪辉、吴佩仪、华斌、如涛、胡坚。。。。（早先捐赠的同学们实在不好意思当初我没有记录下来）等同学的热情捐助。
+感谢：明明、星仔、进、帆、颁钊、斌铨、晓丹、余争、虎、晟敢、徐玮、王川、赵刚强、胡知锋、万新朝、何新超、刘旸、侯宪辉、吴佩仪、华斌、如涛、胡坚。。。（早先的名单实在不好意思没记录下来）等同学的捐助与支持。
 
 
 欢迎关注
 
 blog: http://www.skywind.me
 
-zhihu: https://www.zhihu.com/people/skywind3000 
-
+zhihu: https://www.zhihu.com/people/skywind3000
